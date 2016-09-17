@@ -11,7 +11,7 @@ Welcome to django-actistream!
 .. image:: https://img.shields.io/pypi/v/django-actistream.svg
    :target: https://pypi.python.org/pypi/django-actistream
 
-.. image:: https://coveralls.io/repos/pennersr/django-actistream/badge.png?branch=master
+.. image:: https://coveralls.io/repos/pennersr/django-actistream/badge.png?branch=master&_
    :alt: Coverage Status
    :target: https://coveralls.io/r/pennersr/django-actistream
 
