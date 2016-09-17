@@ -74,7 +74,7 @@ class ActivityManager(models.Manager):
                     ct_to_obj_ids[ct_id].add(obj_id)
         # Fetch objects
         ct_to_obj_id_to_obj = {}
-        for ct_id, obj_ids in ct_to_obj_ids.iteritems():
+        for ct_id, obj_ids in ct_to_obj_ids.items():
             ct = ContentType.objects.get_for_id(ct_id)
             model = ct.model_class()
             objs = model.objects.filter(id__in=obj_ids)

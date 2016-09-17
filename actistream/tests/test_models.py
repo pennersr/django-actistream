@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.core import mail
 
-from actistream.models import Notice
+from actistream.models import Notice, Activity
 
 from . import activities
 from .models import Comment, Article
@@ -17,22 +17,41 @@ class ActivityTestCase(TestCase):
         self.user = User.objects.create(
             email='john@doe.com',
             username='john')
-
-    def test_comment_posted(self):
-        article = Article.objects.create()
-        comment = Comment.objects.create(
-            article=article,
+        self.article = Article.objects.create()
+        self.comment = Comment.objects.create(
+            article=self.article,
             user=self.user)
-        activity = activities.CommentPosted.create(
-            target=article,
+        self.activity = activities.CommentPosted.create(
+            target=self.article,
             actor=self.user,
-            action_object=comment)
+            action_object=self.comment)
+
+    def test_notice(self):
         notice_recipients = [self.user]
         Notice.objects.send(
-            activity,
+            self.activity,
             notice_recipients)
         msg = mail.outbox[0]
         self.assertEquals(msg.subject, 'Comment posted')
         assert msg.to == ['john@doe.com']
         assert msg.content_subtype == 'html'
 
+    def test_for_target(self):
+        qs = Activity.objects.for_target(self.article)
+        assert qs.count() == 1
+        assert qs.filter(pk=self.activity.pk).exists()
+
+    def test_for_action_object(self):
+        qs = Activity.objects.for_action_object(self.comment)
+        assert qs.count() == 1
+        assert qs.filter(pk=self.activity.pk).exists()
+
+    def test_for_action_objects(self):
+        qs = Activity.objects.for_action_objects(
+            Comment.objects.all())
+        assert qs.count() == 1
+        assert qs.filter(pk=self.activity.pk).exists()
+
+    def test_fetch_related(self):
+        # TODO: Actually test something
+        Activity.objects.fetch_related(Activity.objects.all())
