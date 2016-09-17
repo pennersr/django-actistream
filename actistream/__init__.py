@@ -1,4 +1,3 @@
-from django.conf import settings
 from importlib import import_module
 
 VERSION = (1, 0, 0, 'final', 0)
@@ -30,6 +29,7 @@ class ActivityTypeRegistry(object):
             yield (nt.id, nt.verbose_name)
 
     def load(self):
+        from django.conf import settings
         for app in settings.INSTALLED_APPS:
             try:
                 m = app + '.activities'

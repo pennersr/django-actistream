@@ -1,4 +1,4 @@
 include AUTHORS
 include LICENSE
 include README.rst
-recursive-include actistream *.html *.js *.css
+recursive-include actistream *.html *.js *.css *.txt
