@@ -20,7 +20,8 @@ class DefaultAdapter(object):
     def get_current_site(self):
         if self.request:
             site = get_current_site(self.request)
-        elif 'django.contrib.sites' in settings.INSTALLED_APPS:
+        elif ('django.contrib.sites' in settings.INSTALLED_APPS and
+              settings.SITE_ID):
             from django.contrib.sites.models import Site
             site = Site.objects.get_current()
         else:
