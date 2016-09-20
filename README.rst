@@ -99,7 +99,7 @@ To notice users about this activity, do::
 
     from actistream.models import Notice
 
-    notice_request = ['john@doe.com', 'jane@doe.com']
+    notice_recipients = User.objects.filter(...)
     Notice.objects.send(
         activity,
         notice_recipients)
