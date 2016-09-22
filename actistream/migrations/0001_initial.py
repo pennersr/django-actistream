@@ -19,6 +19,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.CreateModel(
             name='Activity',
+            options={'verbose_name': 'activity', 'verbose_name_plural': 'activities'},
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('actor_id', models.PositiveIntegerField()),
@@ -35,6 +36,7 @@ class Migration(migrations.Migration):
         ),
         migrations.CreateModel(
             name='Notice',
+            options={'verbose_name': 'notice', 'verbose_name_plural': 'notices'},
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created_at', models.DateTimeField(verbose_name='created at')),
