@@ -159,9 +159,12 @@ class NoticeManager(models.Manager):
                 user=user,
                 activity=activity,
                 created_at=activity.created_at)
-            ctx = {'activity': activity,
-                   'notice': notice,
-                   'user': user}
+            ctx = {
+                'activity': activity,
+                'activity_context':
+                activity.wrapper().get_context_data(),
+                'notice': notice,
+                'user': user}
             activity_type = activity.get_type()
             get_adapter(request).send_mail(
                 '{0}/activities/{1}'
