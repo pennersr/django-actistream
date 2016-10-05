@@ -42,7 +42,7 @@ class ActivityManager(models.Manager):
         ct = ContentType.objects.get_for_model(action_object)
         activities = Activity.objects \
             .filter(action_object_ct=ct,
-                    action_object_id=action_object.id)
+                    action_object_id=action_object.pk)
         return activities
 
     def for_target(self, target, types=None, flags=None):
@@ -52,7 +52,7 @@ class ActivityManager(models.Manager):
         ct = ContentType.objects.get_for_model(target)
         activities = Activity.objects \
             .filter(target_ct=ct,
-                    target_id=target.id)
+                    target_id=target.pk)
         if types:
             activities = activities.filter(type__in=[t.id for t in types])
         if flags:
@@ -78,7 +78,7 @@ class ActivityManager(models.Manager):
             ct = ContentType.objects.get_for_id(ct_id)
             model = ct.model_class()
             objs = model.objects.filter(id__in=obj_ids)
-            ct_to_obj_id_to_obj[ct_id] = dict([(o.id, o) for o in objs])
+            ct_to_obj_id_to_obj[ct_id] = dict([(o.pk, o) for o in objs])
         # Put objects back in activity
         ret = []
         for activity in qs:
