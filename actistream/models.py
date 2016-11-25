@@ -12,7 +12,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.encoding import python_2_unicode_compatible
 
 from actistream import registry
-from .adapter import get_adapter
 
 
 class ActivityManager(models.Manager):
@@ -139,7 +138,7 @@ class Activity(models.Model):
     class Meta:
         verbose_name = _('activity')
         verbose_name_plural = _('activities')
-        
+
     def get_type(self):
         activity_type = registry.by_id(self.type)
         return activity_type
@@ -159,19 +158,7 @@ class NoticeManager(models.Manager):
                 user=user,
                 activity=activity,
                 created_at=activity.created_at)
-            ctx = {
-                'activity': activity,
-                'activity_context':
-                activity.wrapper().get_context_data(),
-                'notice': notice,
-                'user': user}
-            activity_type = activity.get_type()
-            get_adapter(request).send_mail(
-                '{0}/activities/{1}'
-                .format(activity_type.app,
-                        activity_type.code),
-                user.email,
-                context=ctx)
+            activity.wrapper().send_notice_mail(notice, request)
 
 
 class Notice(models.Model):
@@ -189,5 +176,6 @@ class Notice(models.Model):
     class Meta:
         verbose_name = _('notice')
         verbose_name_plural = _('notices')
+
 
 registry.load()

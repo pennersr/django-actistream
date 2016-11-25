@@ -2,6 +2,7 @@ import json
 from django.utils import six
 
 from actistream import registry
+from .adapter import get_adapter
 
 
 class ActivityTypeMeta(type):
@@ -34,6 +35,32 @@ class ActivityWrapper(object):
     def is_active(self):
         return True
 
+    def get_user_email(self, user):
+        return user.email
+
+    def get_notice_mail_context_data(self, notice, request=None):
+        return {
+            'activity': self.activity,
+            'activity_context':
+            self.get_context_data(),
+            'notice': notice,
+            'user': notice.user}
+
+    def render_notice_mail(self, notice, request=None):
+        ctx = self.get_notice_mail_context_data(notice, request)
+        activity_type = self.activity.get_type()
+        return get_adapter(request).render_mail(
+            '{0}/activities/{1}'
+            .format(activity_type.app,
+                    activity_type.code),
+            self.get_user_email(notice.user),
+            context=ctx)
+
+    def send_notice_mail(self, notice, request=None):
+        msg = self.render_notice_mail(notice, request)
+        msg.send()
+        return msg
+
 
 @six.add_metaclass(ActivityTypeMeta)
 class ActivityType(object):
@@ -56,5 +83,3 @@ class ActivityType(object):
         if commit:
             activity.save()
         return activity
-
-

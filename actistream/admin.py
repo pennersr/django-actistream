@@ -26,5 +26,6 @@ class ActivityAdmin(admin.ModelAdmin):
     list_filter = (
         'created_at',)
 
+
 admin.site.register(Notice, NoticeAdmin)
 admin.site.register(Activity, ActivityAdmin)
