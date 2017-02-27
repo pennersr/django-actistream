@@ -176,6 +176,8 @@ class Notice(models.Model):
     class Meta:
         verbose_name = _('notice')
         verbose_name_plural = _('notices')
-
+        index_together = [
+            ['user', 'read_at']
+        ]
 
 registry.load()
