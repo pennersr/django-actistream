@@ -32,7 +32,7 @@ class ActivityTestCase(TestCase):
             self.activity,
             notice_recipients)
         msg = mail.outbox[0]
-        self.assertEquals(msg.subject, 'Comment posted')
+        self.assertEqual(msg.subject, 'Comment posted')
         assert msg.to == ['john@doe.com']
         assert msg.content_subtype == 'html'
 
