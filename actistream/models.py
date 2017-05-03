@@ -111,17 +111,20 @@ class Activity(models.Model):
     objects = ActivityManager()
 
     actor_ct = models.ForeignKey(ContentType, related_name='+',
-                                 blank=True, null=True)
+                                 blank=True, null=True,
+                                 on_delete=models.CASCADE)
     actor_id = models.PositiveIntegerField()
     actor = GenericForeignKey('actor_ct', 'actor_id')
 
     target_ct = models.ForeignKey(ContentType, related_name='+',
-                                  blank=True, null=True)
+                                  blank=True, null=True,
+                                  on_delete=models.CASCADE)
     target_id = models.PositiveIntegerField()
     target = GenericForeignKey('target_ct', 'target_id')
 
     action_object_ct = models.ForeignKey(ContentType, related_name='+',
-                                         blank=True, null=True)
+                                         blank=True, null=True,
+                                         on_delete=models.CASCADE)
     action_object_id = models.PositiveIntegerField()
     action_object = GenericForeignKey(
         'action_object_ct',
@@ -166,8 +169,9 @@ class Notice(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         related_name='+',
-        verbose_name=_("user"))
-    activity = models.ForeignKey(Activity)
+        verbose_name=_("user"),
+        on_delete=models.CASCADE)
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
     # Denormalized.. matches activity
     created_at = models.DateTimeField(_('created at'))
     read_at = models.DateTimeField(_("read at"), blank=True, null=True)

@@ -17,7 +17,7 @@ def render_activity(context, activity):
                             context)
 
 
-@register.assignment_tag
+@register.simple_tag
 def renderable_activities(activities):
     a = Activity.objects.fetch_related(activities)
     return Activity.objects.filter_active(a)
