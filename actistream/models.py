@@ -3,13 +3,12 @@ from __future__ import absolute_import
 from collections import defaultdict
 
 from django.conf import settings
-from django.db import models
-from django.db.models import Q, F
-from django.core.exceptions import ObjectDoesNotExist
-from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-from django.utils.encoding import python_2_unicode_compatible
+from django.core.exceptions import ObjectDoesNotExist
+from django.db import models
+from django.db.models import F, Q
+from django.utils.translation import ugettext_lazy as _
 
 from actistream import registry
 
@@ -106,7 +105,6 @@ class ActivityManager(models.Manager):
         return ret
 
 
-@python_2_unicode_compatible
 class Activity(models.Model):
     objects = ActivityManager()
 

@@ -1,13 +1,13 @@
 import json
-from django.utils import six
 
 from actistream import registry
+
 from .adapter import get_adapter
 
 
 class ActivityTypeMeta(type):
     def __new__(mcs, name, bases, d):
-        userdef = bases[0] != object
+        userdef = bases and bases[0] != object
         if userdef:
             d['app'] = d['__module__'].split('.')[-2]
             d['code'] = name.lower()
@@ -62,8 +62,8 @@ class ActivityWrapper(object):
         return msg
 
 
-@six.add_metaclass(ActivityTypeMeta)
-class ActivityType(object):
+
+class ActivityType(metaclass=ActivityTypeMeta):
     aliases = {}
     Wrapper = ActivityWrapper
 
@@ -75,8 +75,7 @@ class ActivityType(object):
         for k, v in kwargs.items():
             activity_kwargs[cls.aliases.get(k, k)] = v
         extra_data = activity_kwargs.get('extra_data')
-        if extra_data is not None and not isinstance(
-                extra_data, six.string_types):
+        if extra_data is not None and not isinstance(extra_data, str):
             activity_kwargs['extra_data'] = json.dumps(extra_data)
         activity = Activity(type=cls.id,
                             **activity_kwargs)
