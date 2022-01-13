@@ -5,8 +5,8 @@ Welcome to django-actistream!
 .. image:: https://badge.fury.io/py/django-actistream.png
    :target: http://badge.fury.io/py/django-actistream
 
-.. image:: https://travis-ci.org/pennersr/django-actistream.png
-   :target: http://travis-ci.org/pennersr/django-actistream
+.. image:: https://github.com/pennersr/django-actistream/actions/workflows/ci.yml/badge.svg
+   :target: https://github.com/pennersr/django-actistream/actions
 
 .. image:: https://img.shields.io/pypi/v/django-actistream.svg
    :target: https://pypi.python.org/pypi/django-actistream
