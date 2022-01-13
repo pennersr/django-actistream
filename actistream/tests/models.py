@@ -8,5 +8,5 @@ class Article(models.Model):
 
 class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=timezone.now)

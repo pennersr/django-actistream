@@ -10,12 +10,12 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('actistream', '0001_initial'),
+        ("actistream", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterIndexTogether(
-            name='notice',
-            index_together=set([('user', 'read_at')]),
+            name="notice",
+            index_together=set([("user", "read_at")]),
         ),
     ]

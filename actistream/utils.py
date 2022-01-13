@@ -5,6 +5,6 @@ except ImportError:
 
 
 def import_attribute(path):
-    pkg, attr = path.rsplit('.', 1)
+    pkg, attr = path.rsplit(".", 1)
     ret = getattr(importlib.import_module(pkg), attr)
     return ret

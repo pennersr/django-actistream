@@ -1,14 +1,15 @@
 from importlib import import_module
 
-VERSION = (1, 0, 6, 'final', 0)
+VERSION = (1, 0, 6, "final", 0)
 
-__title__ = 'django-actistream'
+__title__ = "django-actistream"
 __version_info__ = VERSION
-__version__ = '.'.join(map(str, VERSION[:3])) + ('-{}{}'.format(
-    VERSION[3], VERSION[4] or '') if VERSION[3] != 'final' else '')
-__author__ = 'Raymond Penners'
-__license__ = 'MIT'
-__copyright__ = 'Copyright 2017 Raymond Penners and contributors'
+__version__ = ".".join(map(str, VERSION[:3])) + (
+    "-{}{}".format(VERSION[3], VERSION[4] or "") if VERSION[3] != "final" else ""
+)
+__author__ = "Raymond Penners"
+__license__ = "MIT"
+__copyright__ = "Copyright 2017 Raymond Penners and contributors"
 
 
 class ActivityTypeRegistry(object):
@@ -30,9 +31,10 @@ class ActivityTypeRegistry(object):
 
     def load(self):
         from django.conf import settings
+
         for app in settings.INSTALLED_APPS:
             try:
-                m = app + '.activities'
+                m = app + ".activities"
                 import_module(m)
             except ImportError:
                 pass

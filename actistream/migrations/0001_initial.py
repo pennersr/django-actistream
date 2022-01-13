@@ -12,38 +12,109 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('contenttypes', '0002_remove_content_type_name'),
+        ("contenttypes", "0002_remove_content_type_name"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Activity',
-            options={'verbose_name': 'activity', 'verbose_name_plural': 'activities'},
+            name="Activity",
+            options={"verbose_name": "activity", "verbose_name_plural": "activities"},
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('actor_id', models.PositiveIntegerField()),
-                ('target_id', models.PositiveIntegerField()),
-                ('action_object_id', models.PositiveIntegerField()),
-                ('type', models.CharField(max_length=100, verbose_name='type')),
-                ('flags', models.BigIntegerField(default=0)),
-                ('extra_data', models.TextField(blank=True, verbose_name='additional data')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='created at')),
-                ('action_object_ct', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='contenttypes.ContentType')),
-                ('actor_ct', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='contenttypes.ContentType')),
-                ('target_ct', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='contenttypes.ContentType')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("actor_id", models.PositiveIntegerField()),
+                ("target_id", models.PositiveIntegerField()),
+                ("action_object_id", models.PositiveIntegerField()),
+                ("type", models.CharField(max_length=100, verbose_name="type")),
+                ("flags", models.BigIntegerField(default=0)),
+                (
+                    "extra_data",
+                    models.TextField(blank=True, verbose_name="additional data"),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="created at"),
+                ),
+                (
+                    "action_object_ct",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="+",
+                        to="contenttypes.ContentType",
+                    ),
+                ),
+                (
+                    "actor_ct",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="+",
+                        to="contenttypes.ContentType",
+                    ),
+                ),
+                (
+                    "target_ct",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="+",
+                        to="contenttypes.ContentType",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Notice',
-            options={'verbose_name': 'notice', 'verbose_name_plural': 'notices'},
+            name="Notice",
+            options={"verbose_name": "notice", "verbose_name_plural": "notices"},
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(verbose_name='created at')),
-                ('read_at', models.DateTimeField(blank=True, null=True, verbose_name='read at')),
-                ('archived_at', models.DateTimeField(blank=True, null=True, verbose_name='archived at')),
-                ('activity', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='actistream.Activity')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+', to=settings.AUTH_USER_MODEL, verbose_name='user')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(verbose_name="created at")),
+                (
+                    "read_at",
+                    models.DateTimeField(blank=True, null=True, verbose_name="read at"),
+                ),
+                (
+                    "archived_at",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="archived at"
+                    ),
+                ),
+                (
+                    "activity",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="actistream.Activity",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="+",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="user",
+                    ),
+                ),
             ],
         ),
     ]
