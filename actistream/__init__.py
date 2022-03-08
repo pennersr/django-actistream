@@ -1,6 +1,6 @@
 from importlib import import_module
 
-VERSION = (1, 0, 6, "final", 0)
+VERSION = (2, 0, 0, "final", 0)
 
 __title__ = "django-actistream"
 __version_info__ = VERSION
@@ -9,7 +9,7 @@ __version__ = ".".join(map(str, VERSION[:3])) + (
 )
 __author__ = "Raymond Penners"
 __license__ = "MIT"
-__copyright__ = "Copyright 2017 Raymond Penners and contributors"
+__copyright__ = "Copyright 2017-2022 Raymond Penners and contributors"
 
 
 class ActivityTypeRegistry(object):
