@@ -1,6 +1,6 @@
 from importlib import import_module
 
-VERSION = (2, 0, 0, "final", 0)
+VERSION = (2, 0, 1, "final", 0)
 
 __title__ = "django-actistream"
 __version_info__ = VERSION

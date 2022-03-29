@@ -8,7 +8,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.models import F, Q
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from actistream import registry
 
@@ -121,9 +121,7 @@ class Activity(models.Model):
     )
     action_object_id = models.PositiveIntegerField()
     action_object = GenericForeignKey("action_object_ct", "action_object_id")
-    type = models.CharField(
-        max_length=100, choices=registry.as_choices(), verbose_name=_("type")
-    )
+    type = models.CharField(max_length=100, verbose_name=_("type"))
     flags = models.BigIntegerField(default=0)  # Project specific flags
     extra_data = models.TextField(_("additional data"), blank=True)
     created_at = models.DateTimeField(_("created at"), auto_now_add=True)

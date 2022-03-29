@@ -1,13 +1,13 @@
 from django.conf import settings
-from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import EmailMultiAlternatives, EmailMessage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template import TemplateDoesNotExist
+from django.template.loader import render_to_string
 
 try:
-    from django.utils.encoding import force_text
+    from django.utils.encoding import force_str
 except ImportError:
-    from django.utils.encoding import force_unicode as force_text
+    from django.utils.encoding import force_text as force_str
 
 from .utils import import_attribute
 
@@ -35,7 +35,7 @@ class DefaultAdapter(object):
                 prefix = "[{name}] ".format(name=site.name)
             else:
                 prefix = ""
-        return prefix + force_text(subject)
+        return prefix + force_str(subject)
 
     def format_email_body(self, body, ext):
         return body
