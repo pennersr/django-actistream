@@ -54,7 +54,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        "django>=2.0",
+        "django>=2.1",
     ],
     cmdclass={"test": DjangoTests},
     classifiers=[
