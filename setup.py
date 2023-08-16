@@ -73,7 +73,7 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     project_urls={
-        "Changelog": "https://github.com/pennersr/django-actistream/blob/master/ChangeLog.rst",
+        "Changelog": "https://github.com/pennersr/django-actistream/blob/main/ChangeLog.rst",
         "Source": "http://github.com/pennersr/django-actistream",
         "Tracker": "https://github.com/pennersr/django-actistream/issues",
         "Donate": "https://github.com/sponsors/pennersr",
