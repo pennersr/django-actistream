@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.conf import settings
-from django.db import migrations
+from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
@@ -14,8 +14,11 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterIndexTogether(
-            name="notice",
-            index_together=set([("user", "read_at")]),
-        ),
+        migrations.AddIndex(
+            model_name="notice",
+            index=models.Index(
+                name="notice",
+                fields=("user", "read_at"),
+            ),
+        )
     ]
