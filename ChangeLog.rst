@@ -1,3 +1,11 @@
+3.0.2 (2023-08-16)
+******************
+
+Note worthy changes
+-------------------
+
+- Addressed several Django related deprecation warnings.
+
 3.0.1 (2023-08-16)
 ******************
 
