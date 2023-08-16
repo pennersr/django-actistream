@@ -4,7 +4,7 @@
 Backwards incompatible changes
 ------------------------------
 
-- Raised the minimum required Django version to 2.1.
+- Raised the minimum required Django version to 3.1, and minimum required Python version to 3.8.
 
 Note worthy changes
 -------------------
