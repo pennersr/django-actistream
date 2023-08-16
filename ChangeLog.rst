@@ -1,10 +1,10 @@
-3.0.0 (2023-08-15)
+3.0.1 (2023-08-16)
 ******************
 
 Backwards incompatible changes
 ------------------------------
 
-- Raised the minimum required Django version to 3.1, and minimum required Python version to 3.8.
+- Raised the minimum required Django version to 4.0, and minimum required Python version to 3.8.
 
 Note worthy changes
 -------------------
